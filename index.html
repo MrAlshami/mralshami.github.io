@@ -70,6 +70,7 @@
                 alert('DeviceOrientationEvent is not supported');
             }
         }
+        deviceOrientationPermission();
         function stopRotation() {
             window.removeEventListener('deviceorientation', (event) => {
                 document.getElementById('x-value').textContent = event.alpha;
@@ -94,7 +95,7 @@
             document.getElementById('altitude').textContent = position.coords.altitude;
         }
 
-        deviceOrientationPermission();
+        
         // getLocation automatically when the page is loaded.
         getLocation();
 
