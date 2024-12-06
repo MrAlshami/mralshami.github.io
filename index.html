@@ -33,6 +33,11 @@
     <div id="z">
         <p>Z: <span id="z-value"></span></p>
     </div>
+    <div id="gioLocation">
+        <p>Latitude: <span id="latitude"></span></p>
+        <p>Longitude: <span id="longitude"></span></p>
+        <p>Altitude: <span id="altitude"></span></p>
+    </div>
     
 
     <script>
@@ -55,6 +60,17 @@
                 alert('DeviceOrientationEvent is not supported');
             }
         }
+
+        //Use the geolocation sensor and the geolocation API.
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert('Geolocation is not supported');
+            }
+        }
+        // getLocation automatically when the page is loaded.
+        getLocation();
     </script>
 </body>
 </html>
