@@ -21,7 +21,7 @@
 <body>
 
     <button onclick=deviceOrientationPermission()>Start</button>
-    <button onclick=window.location.reload()>Stop</button>
+    <button onclick=stopRotation()>Stop</button>
     <button onclick=getLocation()>Get Location</button>
     <div id="arrow">
         <img src="arrow.svg" alt="arrow" id="arrow-img">
@@ -61,6 +61,14 @@
             } else {
                 alert('DeviceOrientationEvent is not supported');
             }
+        }
+        function stopRotation() {
+            window.removeEventListener('deviceorientation', (event) => {
+                document.getElementById('x-value').textContent = event.alpha;
+                document.getElementById('y-value').textContent = event.beta;
+                document.getElementById('z-value').textContent = event.gamma;
+                document.getElementById('arrow-img').style.transform = `rotate(${event.alpha}deg)`;
+            });
         }
 
         //Use the geolocation sensor and the geolocation API.
