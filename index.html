@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #arrow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #arrow-img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="arrow">
+        <img src="arrow.svg" alt="arrow" id="arrow-img">
+    </div>
+    <div id="x">
+        <p>X: <span id="x-value"></span></p>
+    </div>
+    <div id="y">
+        <p>Y: <span id="y-value"></span></p>
+    </div>
+    <div id="z">
+        <p>Z: <span id="z-value"></span></p>
+    </div>
+    
+
+    <script>
+        let sensor = new Magnetometer();
+        sensor.start();
+
+        sensor.onreading = () => {
+            let x = sensor.x;
+            let y = sensor.y;
+            let z = sensor.z;
+            document.getElementById('x-value').textContent = x;
+            document.getElementById('y-value').textContent = y;
+            document.getElementById('z-value').textContent = z;
+
+            let angle = Math.atan2(y, x) * 180 / Math.PI;
+            document.getElementById('arrow').style.transform = `rotate(${angle}deg)`;
+        }
+
+        sensor.onerror = event => {
+            if (event.error.name == 'NotAllowedError') {
+                console.log("Permission to access sensor was denied.");
+            } else if (event.error.name == 'NotReadableError' ) {
+                console.log("Cannot connect to the sensor.");
+            } else {
+                console.log(event.error.name, event.error.message);
+            }
+        }
+    </script>
+</body>
+</html>
