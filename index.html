@@ -21,6 +21,8 @@
 <body>
 
     <button onclick=deviceOrientationPermission()>Start</button>
+    <button onclick=window.location.reload()>Stop</button>
+    <button onclick=getLocation()>Get Location</button>
     <div id="arrow">
         <img src="arrow.svg" alt="arrow" id="arrow-img">
     </div>
@@ -76,8 +78,6 @@
             document.getElementById('altitude').textContent = position.coords.altitude;
         }
 
-        // getLocation automatically when the page is loaded.
-        getLocation();
     </script>
 </body>
 </html>
