@@ -16,20 +16,12 @@
             width: 100px;
             height: 100px;
         }
-    
-        #stopBtn {
-            position: fixed;
-            top: 0;
-            right: 0;
-            padding: 10px;
-            background-color: red;
-        }
     </style>
 </head>
 <body>
 
     <button onclick=deviceOrientationPermission()>Start</button>
-    <button id="stopBtn" onclick=stopRotation()>Stop</button>
+    <button onclick=window.location.reload()>Stop</button>
     <button onclick=getLocation()>Get Location</button>
     <div id="arrow">
         <img src="arrow.svg" alt="arrow" id="arrow-img">
@@ -70,15 +62,6 @@
                 alert('DeviceOrientationEvent is not supported');
             }
         }
-        deviceOrientationPermission();
-        function stopRotation() {
-            window.removeEventListener('deviceorientation', (event) => {
-                document.getElementById('x-value').textContent = event.alpha;
-                document.getElementById('y-value').textContent = event.beta;
-                document.getElementById('z-value').textContent = event.gamma;
-                document.getElementById('arrow-img').style.transform = `rotate(${event.alpha}deg)`;
-            });
-        }
 
         //Use the geolocation sensor and the geolocation API.
         function getLocation() {
@@ -95,7 +78,7 @@
             document.getElementById('altitude').textContent = position.coords.altitude;
         }
 
-        
+        //deviceOrientationPermission();
         // getLocation automatically when the page is loaded.
         getLocation();
 
