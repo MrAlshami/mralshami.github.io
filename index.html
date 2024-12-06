@@ -16,12 +16,26 @@
             width: 100px;
             height: 100px;
         }
+        #x, #y, #z, #gioLocation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        #stopBtn {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            background-color: red;
+        }
     </style>
 </head>
 <body>
 
     <button onclick=deviceOrientationPermission()>Start</button>
-    <button onclick=stopRotation()>Stop</button>
+    <button id="stopBtn" onclick=stopRotation()>Stop</button>
     <button onclick=getLocation()>Get Location</button>
     <div id="arrow">
         <img src="arrow.svg" alt="arrow" id="arrow-img">
